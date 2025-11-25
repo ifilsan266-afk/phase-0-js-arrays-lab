@@ -1,28 +1,41 @@
-const products =[ "laptop","phone","headphones","monitor"];
+const products = ["Laptop", "Phone", "Headphones", "Monitor"];
+
 console.log(products);
 
-// function to log the details of the first product
-function logfirstproduct(){
-  if(products.length === 0){
-    console.log ("No product available");
-    return; 
-  }
-  const firstproduct = products[0];
-  console.log("first product Details:");
-  console.log("name of the product: " + firstproduct);
-  console.log("position:first item inn array");
+function logFirstProduct() {
+  console.log(products[0]);
 }
-  //call the function to log first product details
-  logfirstproduct();
 
-//adding an item to the array
-products.push("keyboard");
-console.log(products);
+function addProduct(productName) {
+  products.push(productName);
+  console.log(products);
+}
 
-//update product name
-products[2] = "wireless headphones";
-console.log(products);
+function updateProductName(position, newName) {
+  if (position >= 0 && position < products.length) {
+    console.log(products[position]);
+    products[position] = newName;
+    console.log(position,products[position]);
+  } else {
+    console.log("Invalid position. Please provide a valid index.");
+  }
+}
 
-// remove an item from the array
- products.splice(1,1);   
- console.log(products);
+function removeLastProduct() {
+  if (products.length > 0) {
+    const removedProduct = products.pop();
+    console.log(removedProduct);
+    console.log(products);
+  } else {
+    console.log("The products array is already empty.");
+  }
+}
+
+// Export the necessary parts for testing
+module.exports = {
+  logFirstProduct: typeof logFirstProduct !== 'undefined' ? logFirstProduct : undefined,
+  addProduct: typeof addProduct !== 'undefined' ? addProduct : undefined,
+  updateProductName: typeof updateProductName !== 'undefined' ? updateProductName : undefined,
+  removeLastProduct: typeof removeLastProduct !== 'undefined' ? removeLastProduct : undefined,
+  products
+};
